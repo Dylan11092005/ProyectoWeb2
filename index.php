@@ -25,11 +25,11 @@ $alquiler = $conexion->query(
 <head>
     <meta charset="UTF-8">
     <title>UTN Solutions Real Estate</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="./estilos/estilos.css">
 </head>
 <body>
     <div class="barraLogin">
-        <a href="login.php" class="iconoLogin" title="Iniciar sesión">
+        <a href="paginas/login.php" class="iconoLogin" title="Iniciar sesión">
             <img src="assets/user-icon.png" alt="Login" height="32">
         </a>
     </div>
