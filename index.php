@@ -4,6 +4,7 @@ require_once 'conexion.php';
 // Configuración de la página
 $config = $conexion->query("SELECT * FROM configuracion_pagina LIMIT 1")->fetch_assoc();
 
+
 // Propiedades destacadas (3 últimas)
 $destacadas = $conexion->query(
     "SELECT * FROM propiedades WHERE destacada=1 ORDER BY idPropiedad DESC LIMIT 3"
@@ -45,14 +46,14 @@ $alquiler = $conexion->query(
         <nav class="navegacionPrincipal">
             <a href="index.php">Inicio</a> |
             <a href="#quienes">Quiénes Somos</a> |
-            <a href="alquileres.php">Alquileres</a> |
-            <a href="ventas.php">Ventas</a> |
+            <a href="#alquiler">Alquileres</a> |
+            <a href="#venta">Ventas</a> |
             <a href="#contacto">Contáctenos</a>
         </nav>
     </header>
 
     <div class="barraBusqueda">
-        <form action="buscar.php" method="GET" class="formularioBusqueda">
+        <form action="componentes/buscar.php" method="GET" class="formularioBusqueda">
             <input type="text" name="q" placeholder="Buscar propiedades...">
             <button type="submit">🔍</button>
         </form>
@@ -89,7 +90,7 @@ $alquiler = $conexion->query(
                     <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
                     <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
                     <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-                    <a href="propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
+                    <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
                 </div>
             <?php endwhile; ?>
         </div>
@@ -105,7 +106,7 @@ $alquiler = $conexion->query(
                     <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
                     <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
                     <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-                    <a href="propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
+                    <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
                 </div>
             <?php endwhile; ?>
         </div>
@@ -121,7 +122,7 @@ $alquiler = $conexion->query(
                     <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
                     <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
                     <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-                    <a href="propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
+                    <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
                 </div>
             <?php endwhile; ?>
         </div>

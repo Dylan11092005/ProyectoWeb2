@@ -1,5 +1,5 @@
 <?php
-require_once 'conexion.php';
+require_once '../conexion.php';
 
 $q = isset($_GET['q']) ? trim($_GET['q']) : '';
 $resultados = [];
@@ -18,7 +18,7 @@ if ($q !== '') {
 <head>
     <meta charset="UTF-8">
     <title>Resultados de Búsqueda</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../estilos/estiloPropiedad.css">
 </head>
 <body>
     <?php include 'header.php'; ?>
@@ -29,6 +29,7 @@ if ($q !== '') {
         </form>
     </div>
     <section class="resultadosBusqueda">
+    <div class="contenedorPropiedad">
         <h2>Resultados de búsqueda</h2>
         <div class="listaPropiedades" id="resultadosBusqueda">
             <?php if ($q !== ''): ?>
@@ -53,7 +54,8 @@ if ($q !== '') {
                 </div>
             <?php endif; ?>
         </div>
-    </section>
+    </div>
+</section>
     <?php include 'footer.php'; ?>
 </body>
 </html>
