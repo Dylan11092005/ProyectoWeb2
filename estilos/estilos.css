@@ -1,11 +1,18 @@
-
 body {
     margin: 0;
     font-family: 'Montserrat', Arial, sans-serif;
     background: #f5f5f5;
     color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
 /* Barra login */
 .barraLogin {
     width: 100%;
@@ -211,7 +218,11 @@ body {
     flex-direction: column;
     align-items: center;
     margin-bottom: 20px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    
 }
 .tarjetaPropiedad:hover {
     transform: translateY(-6px) scale(1.03);
@@ -249,13 +260,15 @@ body {
     color: #fff;
     border: 2px solid #ffd600;
     border-radius: 8px;
-    padding: 7px 22px;
-    font-size: 1em;
+    padding: 8px 38px;
+    font-size: 1.08em;
     font-weight: bold;
     text-decoration: none;
     margin-top: 8px;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, border 0.2s;
     display: inline-block;
+    letter-spacing: 1px;
+    box-shadow: none;
 }
 .botonVerMas:hover {
     background: #ffd600;
@@ -271,12 +284,15 @@ footer {
     margin: 0;
     font-size: 1em;
     position: relative;
+    min-height: 180px;
 }
 .infoFooter {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 28px 60px 10px 60px;
+    flex-wrap: wrap;
+    gap: 32px;
 }
 .infoFooter div {
     font-size: 1em;
@@ -300,14 +316,15 @@ footer {
     box-shadow: 0 4px 16px rgba(0,0,0,0.18);
 }
 .contactoFooter {
-    position: absolute;
-    right: 60px;
-    top: 18px;
     background: #fff;
     border-radius: 10px;
     padding: 18px 22px 18px 22px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.10);
     width: 320px;
+    min-width: 260px;
+    max-width: 100%;
+    margin-left: 32px;
+    position: static;
 }
 .contactoFooter h4 {
     margin: 0 0 10px 0;
@@ -348,24 +365,29 @@ footer {
     color: #18184d;
 }
 .copyFooter {
+    background: #18184d;
+    color: #fff;
     text-align: center;
-    padding: 18px 0 8px 0;
-    font-size: 0.95em;
-    color: #18184d;
+    padding: 12px 0 10px 0;
+    font-size: 1.1em;
+    width: 100%;
     font-weight: bold;
     letter-spacing: 1px;
+    margin: 0;
+    /* No usar position: fixed ni absolute para sticky footer */
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-    .infoFooter, .contactoFooter {
+    .infoFooter {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         padding: 18px 20px 10px 20px;
+        gap: 20px;
     }
     .contactoFooter {
-        position: static;
         width: 100%;
+        margin-left: 0;
         margin-top: 20px;
     }
 }
@@ -416,8 +438,7 @@ footer {
     }
 }
 
-/* Agrega esto a tu estilos.css */
-
+/* Barra login y búsqueda alternativas */
 .login-top-bar {
     width: 100%;
     display: flex;
@@ -467,4 +488,32 @@ footer {
     font-size: 20px;
     cursor: pointer;
     color: #222;
+}
+
+.verMasSeccion {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0 0 0;
+}
+
+.botonVerMas {
+    background: #18184d;
+    color: #fff;
+    border: 2px solid #ffd600;
+    border-radius: 8px;
+    padding: 8px 38px;
+    font-size: 1.08em;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 8px;
+    transition: background 0.2s, color 0.2s, border 0.2s;
+    display: inline-block;
+    letter-spacing: 1px;
+    box-shadow: none;
+}
+
+.botonVerMas:hover {
+    background: #ffd600;
+    color: #18184d;
+    border: 2px solid #18184d;
 }
