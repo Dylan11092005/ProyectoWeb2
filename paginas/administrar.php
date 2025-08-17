@@ -16,7 +16,7 @@ session_start();
             <img src="../img/usuarios.png" alt="Usuarios">
             <h3>Usuarios</h3>
             <p>Gestionar usuarios del sistema</p>
-            <a class="btn" href="intermedio.php">Ir</a>
+            <a class="btn" href="administrarUsuarios.php">Ir</a>
         </div>
         <div class="card">
             <img src="../img/paleta.png" alt="Personalizar">
