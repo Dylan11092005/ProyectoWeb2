@@ -30,14 +30,18 @@ $alquiler = $conexion->query(
     <section class="propiedadesAlquiler">
         <h2>Propiedades en Alquiler</h2>
         <div class="listaPropiedades">
-            <?php while ($prop = $alquiler->fetch_assoc()): ?>
-                <div class="tarjetaPropiedad">
-                    <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
-                    <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
-                    <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
-                    <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-                </div>
-            <?php endwhile; ?>
+            <?php if ($alquiler && $alquiler->num_rows > 0): ?>
+                <?php while ($prop = $alquiler->fetch_assoc()): ?>
+                    <div class="tarjetaPropiedad">
+                        <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                        <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
+                        <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
+                        <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No hay datos disponibles.</p>
+            <?php endif; ?>
         </div>
     </section>
 </body>

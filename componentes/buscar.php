@@ -15,13 +15,18 @@ if ($q !== '') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Resultados de Búsqueda</title>
     <link rel="stylesheet" href="../estilos/estiloPropiedad.css">
-</head>
+    <link rel="stylesheet" href="../estilos/estiloBusqueda.css">
+
 <body>
-    <?php include 'header.php'; ?>
+    <?php
+    require_once '../componentes/botonRegresar.php';
+    mostrarBotonRegresar('../index.php');
+    ?>
     <div class="barraBusqueda">
         <form action="buscar.php" method="GET" class="formularioBusqueda">
             <input type="text" name="q" placeholder="Buscar propiedades..." value="<?php echo htmlspecialchars($q); ?>">
@@ -29,33 +34,36 @@ if ($q !== '') {
         </form>
     </div>
     <section class="resultadosBusqueda">
-    <div class="contenedorPropiedad">
-        <h2>Resultados de búsqueda</h2>
-        <div class="listaPropiedades" id="resultadosBusqueda">
-            <?php if ($q !== ''): ?>
-                <?php if ($resultados && $resultados->num_rows > 0): ?>
-                    <?php while($prop = $resultados->fetch_assoc()): ?>
-                        <div class="tarjetaPropiedad">
-                            <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
-                            <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
-                            <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
-                            <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-                            <a href="propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver más...</a>
+        <div class="contenedorPropiedad">
+            <h2>Resultados de búsqueda</h2>
+            <div class="listaPropiedades" id="resultadosBusqueda">
+                <?php if ($q !== ''): ?>
+                    <?php if ($resultados && $resultados->num_rows > 0): ?>
+                        <?php while ($prop = $resultados->fetch_assoc()): ?>
+                            <div class="tarjetaPropiedad">
+                                <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
+                                    alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                                <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
+                                <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
+                                <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
+                                <a href="../paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="botonVerMas">Ver
+                                    más...</a>
+                            </div>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <div class="mensajeBusqueda">
+                            No hay datos disponibles.
                         </div>
-                    <?php endwhile; ?>
+                    <?php endif; ?>
                 <?php else: ?>
                     <div class="mensajeBusqueda">
-                        No se encontraron propiedades para tu búsqueda.
+                        Ingresa un término para buscar propiedades.
                     </div>
                 <?php endif; ?>
-            <?php else: ?>
-                <div class="mensajeBusqueda">
-                    Ingresa un término para buscar propiedades.
-                </div>
-            <?php endif; ?>
+            </div>
         </div>
-    </div>
-</section>
-    <?php include 'footer.php'; ?>
+    </section>
+
 </body>
+
 </html>
