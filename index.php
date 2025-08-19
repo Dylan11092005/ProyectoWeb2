@@ -28,6 +28,7 @@ $alquiler = $conexion->query(
     <meta charset="UTF-8">
     <title>UTN Solutions Real Estate</title>
     <link rel="stylesheet" href="./estilos/estilos.css">
+    <link rel="stylesheet" href="./estilos/estiloBusqueda.css">
 </head>
 
 <body>

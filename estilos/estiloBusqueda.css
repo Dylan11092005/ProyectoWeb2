@@ -1,37 +1,29 @@
 .barraBusqueda {
     width: 100%;
-    background: #f5f5f5;
-    padding: 20px 0;
+    background: #0a0a1a;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
+    padding: 12px 40px 12px 0;
 }
-
 .formularioBusqueda {
     display: flex;
     align-items: center;
-    gap: 10px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 2px 8px;
 }
-
 .formularioBusqueda input[type="text"] {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 250px;
-    font-size: 16px;
-}
-
-.formularioBusqueda button {
-    padding: 8px 16px;
-    background: #007bff;
-    color: #fff;
     border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.2s;
+    outline: none;
+    padding: 6px 8px;
+    font-size: 15px;
+    border-radius: 8px;
+    background: transparent;
 }
-
-.formularioBusqueda button:hover {
-    background: #0056b3;
+.formularioBusqueda button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #222;
 }
