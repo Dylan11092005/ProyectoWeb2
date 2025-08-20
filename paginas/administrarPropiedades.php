@@ -30,7 +30,7 @@ if ($privilegio === 'administrador' && isset($_GET['eliminar'])) {
     <div class="container">
         <div class="header-usuarios">
             <h1 class="titulo">Propiedades</h1>
-            <?php if ($privilegio === 'administrador'): ?>
+            <?php if ($privilegio === 'administrador' || $privilegio === 'agente'): ?>
                 <form action="agregar/agregarPropiedad.php" method="POST" class="form-agregar-usuario">
                     <button type="submit" class="btn btn-agregar">Agregar propiedad</button>
                 </form>
@@ -137,7 +137,7 @@ if ($privilegio === 'administrador' && isset($_GET['eliminar'])) {
                                 }
                             });'
                         >Actualizar</button>
-                        <?php if ($privilegio === 'administrador'): ?>
+                        <?php if ($privilegio === 'administrador' || $privilegio === 'agente'): ?>
                             <a
                                 href="?eliminar=<?= (int)$row['idPropiedad']; ?>"
                                 class="action-btn delete-btn"
