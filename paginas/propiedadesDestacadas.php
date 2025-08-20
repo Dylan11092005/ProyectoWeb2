@@ -1,10 +1,13 @@
 <?php
 require_once '../conexion.php';
 
-// Consulta para todas las propiedades destacadas
-$destacadas = $conexion->query(
-    "SELECT * FROM propiedades WHERE destacada=1 ORDER BY idPropiedad DESC"
-);
+// Consulta segura para todas las propiedades destacadas
+$stmtDestacadas = $conexion->prepare("SELECT * FROM propiedades WHERE destacada=? ORDER BY idPropiedad DESC");
+$destacada = 1;
+$stmtDestacadas->bind_param("i", $destacada);
+$stmtDestacadas->execute();
+$destacadas = $stmtDestacadas->get_result();
+$stmtDestacadas->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -33,7 +36,7 @@ $destacadas = $conexion->query(
             <?php if ($destacadas && $destacadas->num_rows > 0): ?>
                 <?php while ($prop = $destacadas->fetch_assoc()): ?>
                     <div class="tarjetaPropiedad">
-                        <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                        <img src="../uploads/<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
                         <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
                         <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
                         <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>

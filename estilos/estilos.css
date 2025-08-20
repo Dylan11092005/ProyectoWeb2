@@ -1,8 +1,95 @@
+:root {
+    --colorAzul: #18184d;      /* Azul por defecto */
+    --colorAmarillo: #ffc107;  /* Amarillo por defecto */
+    --colorGris: #f5f5f5;      /* Gris claro */
+    --color-header: #0a0a1a;   /* Color del header */
+    --colorBlacono: #ffffff;   /* Color del fondo */
+}
+
+/* Ejemplo de uso en el resto del CSS */
+body {
+    background: var(--color-header);
+    color: var(--colorAzul);
+}
+
+.encabezadoPrincipal {
+    background: var(--color-header);
+    color: var(--colorBlacono);
+}
+
+.navegacionPrincipal a {
+    color: var(--colorAmarillo);
+}
+.navegacionPrincipal a:hover {
+    color: var(--colorBlacono);
+}
+
+.propiedadesDestacadas,
+.propiedadesAlquiler {
+    background: var(--colorAzul);
+}
+.propiedadesVenta {
+    background: var(--colorGris);
+}
+.propiedadesDestacadas h2,
+.propiedadesAlquiler h2 {
+    color: var(--colorBlacono);
+}
+.propiedadesVenta h2 {
+    color: var(--colorAzul);
+}
+
+.tarjetaPropiedad h3 {
+    color: var(--colorAzul);
+}
+.precioPropiedad {
+    color: var(--colorAmarillo);
+}
+.botonVerMas {
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
+    border: 2px solid var(--colorAmarillo);
+}
+.botonVerMas:hover {
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
+    border: 2px solid var(--colorAzul);
+}
+
+footer {
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
+}
+.copyFooter {
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
+}
+
+.contactoFooter h4 {
+    color: var(--colorAzul);
+}
+.contactoFooter button {
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
+}
+.contactoFooter button:hover {
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
+}
+
+.redesFooter img {
+    background: var(--colorBlacono);
+}
+.redesFooter img:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+/* General */
 body {
     margin: 0;
     font-family: 'Montserrat', Arial, sans-serif;
-    background: #f5f5f5;
-    color: #222;
+    background: var(--color-header);
+    color: var(--color-texto);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -37,8 +124,8 @@ html, body {
 
 /* Header */
 .encabezadoPrincipal {
-    background: #0a0a1a;
-    color: #fff;
+    background: var(--color-header);
+    color: var(--colorBlacono);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,13 +152,13 @@ html, body {
     letter-spacing: 1px;
 }
 .navegacionPrincipal a {
-    color: #ffd600;
+    color: var(--colorAmarillo);
     text-decoration: none;
     margin: 0 5px;
     transition: color 0.2s;
 }
 .navegacionPrincipal a:hover {
-    color: #fff;
+    color: var(--colorBlacono);
 }
 
 
@@ -97,7 +184,7 @@ html, body {
     justify-content: center;
 }
 .superposicionBanner h1 {
-    color: #fff;
+    color: white;
     font-size: 2.2em;
     font-weight: 500;
     letter-spacing: 2px;
@@ -108,7 +195,7 @@ html, body {
 
 /* Quiénes Somos */
 .quienesSomos {
-    background: #fff;
+    background: var(--colorGris);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,17 +234,17 @@ html, body {
     padding: 40px 0 30px 0;
 }
 .propiedadesDestacadas {
-    background: #18184d;
+    background: var(--colorAzul);
 }
 .propiedadesVenta {
-    background: #f5f5f5;
+    background: var(--colorGris);
 }
 .propiedadesAlquiler {
-    background: #18184d;
+    background: var(--colorAzul);
 }
 .propiedadesDestacadas h2,
 .propiedadesAlquiler h2 {
-    color: #fff;
+    color: var(--colorBlacono);
     text-align: center;
     font-size: 2em;
     font-weight: bold;
@@ -165,7 +252,7 @@ html, body {
     margin-bottom: 30px;
 }
 .propiedadesVenta h2 {
-    color: #18184d;
+    color: var(--colorAzul);
     text-align: center;
     font-size: 2em;
     font-weight: bold;
@@ -209,7 +296,7 @@ html, body {
     font-size: 1.2em;
     font-weight: bold;
     margin: 10px 0 6px 0;
-    color: #18184d;
+    color: var(--colorAzul);
     font-style: italic;
 }
 .tarjetaPropiedad p {
@@ -220,15 +307,15 @@ html, body {
 }
 .precioPropiedad {
     font-weight: bold;
-    color: #ffd600;
+    color: var(--colorAmarillo);
     font-size: 1.1em;
     margin-bottom: 10px;
     display: block;
 }
 .botonVerMas {
-    background: #18184d;
-    color: #fff;
-    border: 2px solid #ffd600;
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
+    border: 2px solid var(--colorAmarillo);
     border-radius: 8px;
     padding: 8px 38px;
     font-size: 1.08em;
@@ -241,15 +328,15 @@ html, body {
     box-shadow: none;
 }
 .botonVerMas:hover {
-    background: #ffd600;
-    color: #18184d;
-    border: 2px solid #18184d;
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
+    border: 2px solid var(--colorAzul);
 }
 
 /* Footer */
 footer {
-    background: #ffd600;
-    color: #18184d;
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
     padding: 0;
     margin: 0;
     font-size: 1em;
@@ -263,9 +350,28 @@ footer {
     padding: 28px 60px 10px 60px;
     flex-wrap: wrap;
     gap: 32px;
+    min-height: 180px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.infoFooter > div:first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;              /* Más separación entre los datos */
+    font-size: 1.18em;      /* Texto más grande */
+    line-height: 1.7;       /* Más espacio vertical */
 }
 .infoFooter div {
     font-size: 1em;
+}
+.logoFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-bottom: 12px;
 }
 .logoFooter img {
     display: block;
@@ -273,10 +379,12 @@ footer {
 }
 .redesFooter {
     display: flex;
-    gap: 18px;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
 }
 .redesFooter img {
-    background: #fff;
+    background: var(--colorBlacono);
     border-radius: 50%;
     padding: 4px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.10);
@@ -298,7 +406,7 @@ footer {
 }
 .contactoFooter h4 {
     margin: 0 0 10px 0;
-    color: #18184d;
+    color: var(--colorAzul);
     font-size: 1.1em;
     font-weight: bold;
 }
@@ -318,8 +426,8 @@ footer {
     max-height: 90px;
 }
 .contactoFooter button {
-    background: #18184d;
-    color: #fff;
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
     border: none;
     border-radius: 6px;
     padding: 7px 0;
@@ -331,12 +439,12 @@ footer {
     transition: background 0.2s;
 }
 .contactoFooter button:hover {
-    background: #ffd600;
-    color: #18184d;
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
 }
 .copyFooter {
-    background: #18184d;
-    color: #fff;
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
     text-align: center;
     padding: 12px 0 10px 0;
     font-size: 1.1em;
@@ -345,6 +453,38 @@ footer {
     letter-spacing: 1px;
     margin: 0;
     /* No usar position: fixed ni absolute para sticky footer */
+}
+
+.datosFooter {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 1.18em;
+    margin-left: 10px;
+    margin-right: 30px;
+}
+
+.datosFooter div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logoMiniFooter {
+    margin: 0 6px 0 2px;
+    vertical-align: middle;
+}
+
+.iconoFooter {
+    font-size: 1.5em;
+    margin-right: 6px;
+    color: #222;
+}
+
+.datosFooter strong em {
+    font-style: italic;
+    font-weight: bold;
+    margin-right: 4px;
 }
 
 /* Responsive */
@@ -467,9 +607,9 @@ footer {
 }
 
 .botonVerMas {
-    background: #18184d;
-    color: #fff;
-    border: 2px solid #ffd600;
+    background: var(--colorAzul);
+    color: var(--colorBlacono);
+    border: 2px solid var(--colorAmarillo);
     border-radius: 8px;
     padding: 8px 38px;
     font-size: 1.08em;
@@ -483,7 +623,7 @@ footer {
 }
 
 .botonVerMas:hover {
-    background: #ffd600;
-    color: #18184d;
-    border: 2px solid #18184d;
+    background: var(--colorAmarillo);
+    color: var(--colorAzul);
+    border: 2px solid var(--colorAzul);
 }

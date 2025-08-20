@@ -6,16 +6,24 @@ $prop = null;
 $agente = null;
 
 if ($id > 0) {
-    $res = $conexion->query("SELECT * FROM propiedades WHERE idPropiedad = $id LIMIT 1");
+    $stmtProp = $conexion->prepare("SELECT * FROM propiedades WHERE idPropiedad = ? LIMIT 1");
+    $stmtProp->bind_param("i", $id);
+    $stmtProp->execute();
+    $res = $stmtProp->get_result();
     if ($res && $res->num_rows > 0) {
         $prop = $res->fetch_assoc();
         // Obtener datos del agente
         $idAgente = intval($prop['idAgente']);
-        $resAgente = $conexion->query("SELECT nombre, telefono, email FROM usuarios WHERE idUsuario = $idAgente LIMIT 1");
+        $stmtAgente = $conexion->prepare("SELECT nombre, telefono, email FROM usuarios WHERE idUsuario = ? LIMIT 1");
+        $stmtAgente->bind_param("i", $idAgente);
+        $stmtAgente->execute();
+        $resAgente = $stmtAgente->get_result();
         if ($resAgente && $resAgente->num_rows > 0) {
             $agente = $resAgente->fetch_assoc();
         }
+        $stmtAgente->close();
     }
+    $stmtProp->close();
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +39,7 @@ if ($id > 0) {
     <?php if ($prop): ?>
         <div class="contenedorPropiedad">
             <h2><?php echo htmlspecialchars($prop['titulo']); ?></h2>
-            <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="Imagen de la propiedad"
+                <img src="../uploads/<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="Imagen de la propiedad"
                 style="max-width:400px;">
             <p><strong>Tipo:</strong> <?php echo htmlspecialchars($prop['tipo']); ?></p>
             <p><strong>Destacada:</strong> <?php echo $prop['destacada'] ? 'Sí' : 'No'; ?></p>
