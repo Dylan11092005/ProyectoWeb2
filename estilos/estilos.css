@@ -74,36 +74,6 @@ html, body {
     color: #fff;
 }
 
-/* Barra de búsqueda */
-.barraBusqueda {
-    width: 100%;
-    background: #0a0a1a;
-    display: flex;
-    justify-content: flex-end;
-    padding: 12px 40px 12px 0;
-}
-.formularioBusqueda {
-    display: flex;
-    align-items: center;
-    background: #fff;
-    border-radius: 8px;
-    padding: 2px 8px;
-}
-.formularioBusqueda input[type="text"] {
-    border: none;
-    outline: none;
-    padding: 6px 8px;
-    font-size: 15px;
-    border-radius: 8px;
-    background: transparent;
-}
-.formularioBusqueda button {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #222;
-}
 
 /* Banner */
 .bannerPrincipal {

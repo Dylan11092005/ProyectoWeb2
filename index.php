@@ -28,12 +28,13 @@ $alquiler = $conexion->query(
     <meta charset="UTF-8">
     <title>UTN Solutions Real Estate</title>
     <link rel="stylesheet" href="./estilos/estilos.css">
+    <link rel="stylesheet" href="./estilos/estiloBusqueda.css">
 </head>
 
 <body>
     <div class="barraLogin">
         <a href="paginas/login.php" class="iconoLogin" title="Iniciar sesión">
-            <img src="assets/user-icon.png" alt="Login" height="32">
+            <img src="img/usuarios.png" alt="Login" height="32">
         </a>
     </div>
 
@@ -64,11 +65,16 @@ $alquiler = $conexion->query(
 
     <!-- Banner principal -->
     <section class="bannerPrincipal">
-        <img src="<?php echo htmlspecialchars($config['bannerImagen']); ?>" alt="Banner principal" class="imagenBanner"
-            id="imagenBanner">
-        <div class="superposicionBanner">
-            <h1 id="mensajeBanner"><?php echo htmlspecialchars($config['bannerMensaje']); ?></h1>
-        </div>
+        <?php if ($config): ?>
+            <img src="<?php echo htmlspecialchars($config['bannerImagen']); ?>" alt="Banner principal" class="imagenBanner" id="imagenBanner">
+            <div class="superposicionBanner">
+                <h1 id="mensajeBanner"><?php echo htmlspecialchars($config['bannerMensaje']); ?></h1>
+            </div>
+        <?php else: ?>
+            <div class="superposicionBanner">
+                <h1 id="mensajeBanner">No hay datos disponibles.</h1>
+            </div>
+        <?php endif; ?>
     </section>
 
     <!-- Sección Quienes Somos -->
@@ -76,12 +82,17 @@ $alquiler = $conexion->query(
         <div class="textoQuienes">
             <h2>Quiénes Somos</h2>
             <p id="descripcionQuienes">
-                <?php echo nl2br(htmlspecialchars($config['quienesSomos'])); ?>
+                <?php if ($config): ?>
+                    <?php echo nl2br(htmlspecialchars($config['quienesSomos'])); ?>
+                <?php else: ?>
+                    No hay datos disponibles.
+                <?php endif; ?>
             </p>
         </div>
         <div class="imagenQuienes">
-            <img src="<?php echo htmlspecialchars($config['quienesSomosImagen']); ?>" alt="Equipo UTN Solutions"
-                height="180" id="imagenQuienes">
+            <?php if ($config): ?>
+                <img src="<?php echo htmlspecialchars($config['quienesSomosImagen']); ?>" alt="Equipo UTN Solutions" height="180" id="imagenQuienes">
+            <?php endif; ?>
         </div>
     </section>
 
@@ -89,15 +100,19 @@ $alquiler = $conexion->query(
 <section class="propiedadesDestacadas" id="destacadas">
     <h2>Propiedades Destacadas</h2>
     <div class="listaPropiedades">
-        <?php while ($prop = $destacadas->fetch_assoc()): ?>
-            <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
-                <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
-                    alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
-                <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
-                <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
-                <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-            </a>
-        <?php endwhile; ?>
+        <?php if ($destacadas && $destacadas->num_rows > 0): ?>
+            <?php while ($prop = $destacadas->fetch_assoc()): ?>
+                <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
+                    <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
+                        alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                    <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
+                    <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
+                    <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
+                </a>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No hay datos disponibles.</p>
+        <?php endif; ?>
     </div>
     <div class="verMasSeccion">
         <a href="paginas/propiedadesDestacadas.php" class="botonVerMas">Ver más</a>
@@ -108,15 +123,19 @@ $alquiler = $conexion->query(
 <section class="propiedadesVenta" id="venta">
     <h2>Propiedades en Venta</h2>
     <div class="listaPropiedades">
-        <?php while ($prop = $venta->fetch_assoc()): ?>
-            <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
-                <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
-                    alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
-                <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
-                <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
-                <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-            </a>
-        <?php endwhile; ?>
+        <?php if ($venta && $venta->num_rows > 0): ?>
+            <?php while ($prop = $venta->fetch_assoc()): ?>
+                <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
+                    <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
+                        alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                    <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
+                    <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
+                    <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
+                </a>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No hay datos disponibles.</p>
+        <?php endif; ?>
     </div>
     <div class="verMasSeccion">
         <a href="paginas/propiedadesVenta.php" class="botonVerMas">Ver más</a>
@@ -127,15 +146,19 @@ $alquiler = $conexion->query(
 <section class="propiedadesAlquiler" id="alquiler">
     <h2>Propiedades en Alquiler</h2>
     <div class="listaPropiedades">
-        <?php while ($prop = $alquiler->fetch_assoc()): ?>
-            <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
-                <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
-                    alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
-                <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
-                <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
-                <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-            </a>
-        <?php endwhile; ?>
+        <?php if ($alquiler && $alquiler->num_rows > 0): ?>
+            <?php while ($prop = $alquiler->fetch_assoc()): ?>
+                <a href="paginas/propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
+                    <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
+                        alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                    <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
+                    <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
+                    <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
+                </a>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No hay datos disponibles.</p>
+        <?php endif; ?>
     </div>
     <div class="verMasSeccion">
         <a href="paginas/propiedadesAlquiler.php" class="botonVerMas">Ver más</a>
@@ -146,23 +169,21 @@ $alquiler = $conexion->query(
     <footer>
         <div class="infoFooter">
             <div>
-                <strong>Dirección:</strong> <span
-                    id="direccionFooter"><?php echo htmlspecialchars($config['direccion']); ?></span><br>
-                <strong>Teléfono:</strong> <span
-                    id="telefonoFooter"><?php echo htmlspecialchars($config['telefono']); ?></span><br>
-                <strong>Email:</strong> <span id="emailFooter"><?php echo htmlspecialchars($config['email']); ?></span>
+                <strong>Dirección:</strong> <span id="direccionFooter"><?php echo $config ? htmlspecialchars($config['direccion']) : 'No hay datos disponibles.'; ?></span><br>
+                <strong>Teléfono:</strong> <span id="telefonoFooter"><?php echo $config ? htmlspecialchars($config['telefono']) : 'No hay datos disponibles.'; ?></span><br>
+                <strong>Email:</strong> <span id="emailFooter"><?php echo $config ? htmlspecialchars($config['email']) : 'No hay datos disponibles.'; ?></span>
             </div>
             <div class="logoFooter">
-                <img src="<?php echo htmlspecialchars($config['iconoBlanco']); ?>" alt="UTN Solutions Real Estate"
-                    height="50" id="logoFooter">
+                <?php if ($config): ?>
+                    <img src="<?php echo htmlspecialchars($config['iconoBlanco']); ?>" alt="UTN Solutions Real Estate" height="50" id="logoFooter">
+                <?php endif; ?>
             </div>
             <div class="redesFooter">
-                <a href="<?php echo htmlspecialchars($config['facebook']); ?>" target="_blank" id="facebookFooter"><img
-                        src="assets/facebook.png" alt="Facebook" height="32"></a>
-                <a href="<?php echo htmlspecialchars($config['instagram']); ?>" target="_blank"
-                    id="instagramFooter"><img src="assets/instagram.png" alt="Instagram" height="32"></a>
-                <a href="<?php echo htmlspecialchars($config['youtube']); ?>" target="_blank" id="youtubeFooter"><img
-                        src="assets/youtube.png" alt="YouTube" height="32"></a>
+                <?php if ($config): ?>
+                    <a href="<?php echo htmlspecialchars($config['facebook']); ?>" target="_blank" id="facebookFooter"><img src="assets/facebook.png" alt="Facebook" height="32"></a>
+                    <a href="<?php echo htmlspecialchars($config['instagram']); ?>" target="_blank" id="instagramFooter"><img src="assets/instagram.png" alt="Instagram" height="32"></a>
+                    <a href="<?php echo htmlspecialchars($config['youtube']); ?>" target="_blank" id="youtubeFooter"><img src="assets/youtube.png" alt="YouTube" height="32"></a>
+                <?php endif; ?>
             </div>
             <!-- Mueve aquí el formulario de contacto -->
             <div class="contactoFooter" id="contacto">
