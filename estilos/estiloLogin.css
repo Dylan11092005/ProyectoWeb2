@@ -1,3 +1,16 @@
+textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: 40px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #b2eaff;
+    background: #f6fdff;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    font-size: 1rem;
+    resize: vertical;
+}
 body {
     background: #6dd5ed;
     font-family: 'Segoe UI', Arial, sans-serif;

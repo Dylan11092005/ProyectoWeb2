@@ -1,0 +1,66 @@
+.personalizar-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(33, 147, 176, 0.18);
+    padding: 32px 28px 24px 28px;
+    min-width: 320px;
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.personalizar-card h1 {
+    color: #2193b0;
+    margin-bottom: 24px;
+    font-size: 2rem;
+}
+.personalizar-form label {
+    display: block;
+    margin-bottom: 6px;
+    color: #2193b0;
+    font-size: 15px;
+    text-align: left;
+}
+.personalizar-form input,
+.personalizar-form select,
+.personalizar-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    border: 1px solid #b2ebf2;
+    border-radius: 8px;
+    font-size: 15px;
+    background: #f7fafd;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+.personalizar-form input:focus,
+.personalizar-form select:focus,
+.personalizar-form textarea:focus {
+    border-color: #2193b0;
+    outline: none;
+}
+.personalizar-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #2193b0 0%, #6dd5ed 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(33, 147, 176, 0.10);
+    transition: background 0.2s;
+    margin-top: 16px;
+}
+.personalizar-form button[type="submit"]:hover {
+    background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%);
+}
+.personalizar-form img {
+    margin-bottom: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(33, 147, 176, 0.10);
+}
