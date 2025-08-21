@@ -40,10 +40,18 @@ $stmtAlquiler->close();
     <title>UTN Solutions Real Estate</title>
     <style>
         :root {
-            --colorAzul: <?php echo isset($config['colorAzul']) ? $config['colorAzul'] : '#18184d'; ?>;
-            --colorAmarillo: <?php echo isset($config['colorAmarillo']) ? $config['colorAmarillo'] : '#ffc107'; ?>;
-            --colorGris: <?php echo isset($config['colorGris']) ? $config['colorGris'] : '#f5f5f5'; ?>;
-            --colorBlacono: <?php echo isset($config['colorBlanco']) ? $config['colorBlanco'] : '#ffffff'; ?>;
+            --colorAzul:
+                <?php echo isset($config['colorAzul']) ? $config['colorAzul'] : '#18184d'; ?>
+            ;
+            --colorAmarillo:
+                <?php echo isset($config['colorAmarillo']) ? $config['colorAmarillo'] : '#ffc107'; ?>
+            ;
+            --colorGris:
+                <?php echo isset($config['colorGris']) ? $config['colorGris'] : '#f5f5f5'; ?>
+            ;
+            --colorBlacono:
+                <?php echo isset($config['colorBlanco']) ? $config['colorBlanco'] : '#ffffff'; ?>
+            ;
             --color-header: #0a0a1a;
         }
     </style>
@@ -61,32 +69,33 @@ $stmtAlquiler->close();
     </div>
 
     <header class="encabezadoPrincipal">
-    <div class="logoRedesContainer" style="display: flex; flex-direction: column; align-items: center;">
-        <div class="logoEmpresa">
-            <img src="uploads/<?php echo htmlspecialchars($config['iconoPrincipal']); ?>" alt="UTN Solutions Real Estate" height="80" >
+        <div class="logoRedesContainer" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="logoEmpresa">
+                <img src="uploads/<?php echo htmlspecialchars($config['iconoPrincipal']); ?>"
+                    alt="UTN Solutions Real Estate" height="80">
+            </div>
+            <div class="redesFooter" style="display: flex; flex-direction: row; gap: 16px; margin-top: 16px;">
+                <?php if ($config): ?>
+                    <a href="<?php echo htmlspecialchars($config['facebook']); ?>" target="_blank" id="facebookFooter">
+                        <img src="img/facebook.png" alt="Facebook" height="40">
+                    </a>
+                    <a href="<?php echo htmlspecialchars($config['youtube']); ?>" target="_blank" id="youtubeFooter">
+                        <img src="img/youtube.png" alt="YouTube" height="40">
+                    </a>
+                    <a href="<?php echo htmlspecialchars($config['instagram']); ?>" target="_blank" id="instagramFooter">
+                        <img src="img/instagram.png" alt="Instagram" height="40">
+                    </a>
+                <?php endif; ?>
+            </div>
         </div>
-        <div class="redesFooter" style="display: flex; flex-direction: row; gap: 16px; margin-top: 16px;">
-            <?php if ($config): ?>
-                <a href="<?php echo htmlspecialchars($config['facebook']); ?>" target="_blank" id="facebookFooter">
-                    <img src="img/facebook.png" alt="Facebook" height="40">
-                </a>
-                <a href="<?php echo htmlspecialchars($config['youtube']); ?>" target="_blank" id="youtubeFooter">
-                    <img src="img/youtube.png" alt="YouTube" height="40">
-                </a>
-                <a href="<?php echo htmlspecialchars($config['instagram']); ?>" target="_blank" id="instagramFooter">
-                    <img src="img/instagram.png" alt="Instagram" height="40">
-                </a>
-            <?php endif; ?>
-        </div>
-    </div>
-    <nav class="navegacionPrincipal">
-        <a href="index.php">Inicio</a> |
-        <a href="#quienes">Quiénes Somos</a> |
-        <a href="#alquiler">Alquileres</a> |
-        <a href="#venta">Ventas</a> |
-        <a href="#contacto">Contáctenos</a>
-    </nav>
-</header>
+        <nav class="navegacionPrincipal">
+            <a href="index.php">Inicio</a> |
+            <a href="#quienes">Quiénes Somos</a> |
+            <a href="#alquiler">Alquileres</a> |
+            <a href="#venta">Ventas</a> |
+            <a href="#contacto">Contáctenos</a>
+        </nav>
+    </header>
 
     <div class="barraBusqueda">
         <form action="componentes/buscar.php" method="GET" class="formularioBusqueda">
@@ -203,55 +212,70 @@ $stmtAlquiler->close();
 
     <!-- Footer con contacto -->
     <footer>
-    <div class="infoFooter">
-        <div class="datosFooter">
-            <div>
-                <img src="img/direccion.png" alt="Logo UTN" height="28" class="logoMiniFooter">
-                <strong><em>Dirección:</em></strong>
-                <span id="direccionFooter"><?php echo $config ? htmlspecialchars($config['direccion']) : 'No hay datos disponibles.'; ?></span>
+        <div class="infoFooter">
+            <div class="datosFooter">
+                <div>
+                    <img src="img/direccion.png" alt="Logo UTN" height="28" class="logoMiniFooter">
+                    <strong><em>Dirección:</em></strong>
+                    <span
+                        id="direccionFooter"><?php echo $config ? htmlspecialchars($config['direccion']) : 'No hay datos disponibles.'; ?></span>
+                </div>
+                <div>
+                    <img src="img/telefono.png" alt="Logo UTN" height="28" class="logoMiniFooter">
+                    <strong><em>Teléfono:</em></strong>
+                    <span
+                        id="telefonoFooter"><?php echo $config ? htmlspecialchars($config['telefono']) : 'No hay datos disponibles.'; ?></span>
+                </div>
+                <div>
+                    <img src="img/email.png" alt="Logo UTN" height="28" class="logoMiniFooter">
+                    <strong><em>Email:</em></strong>
+                    <span
+                        id="emailFooter"><?php echo $config ? htmlspecialchars($config['email']) : 'No hay datos disponibles.'; ?></span>
+                </div>
             </div>
-            <div>
-                <img src="img/telefono.png" alt="Logo UTN" height="28" class="logoMiniFooter">
-                <strong><em>Teléfono:</em></strong>
-                <span id="telefonoFooter"><?php echo $config ? htmlspecialchars($config['telefono']) : 'No hay datos disponibles.'; ?></span>
+            <div class="logoFooterRedesContainer">
+                <div class="logoFooter">
+                    <?php if ($config): ?>
+                        <img src="uploads/<?php echo htmlspecialchars($config['iconoBlanco']); ?>"
+                            alt="UTN Solutions Real Estate" height="80" id="logoFooter">
+                    <?php endif; ?>
+                </div>
+                <div class="redesFooter">
+                    <?php if ($config): ?>
+                        <a href="<?php echo htmlspecialchars($config['facebook']); ?>" target="_blank"
+                            id="facebookFooter"><img src="img/facebook.png" alt="Facebook" height="32"></a>
+                        <a href="<?php echo htmlspecialchars($config['youtube']); ?>" target="_blank"
+                            id="youtubeFooter"><img src="img/youtube.png" alt="YouTube" height="32"></a>
+                        <a href="<?php echo htmlspecialchars($config['instagram']); ?>" target="_blank"
+                            id="instagramFooter"><img src="img/instagram.png" alt="Instagram" height="32"></a>
+                    <?php endif; ?>
+                </div>
             </div>
-            <div>
-                <img src="img/email.png" alt="Logo UTN" height="28" class="logoMiniFooter">
-                <strong><em>Email:</em></strong>
-                <span id="emailFooter"><?php echo $config ? htmlspecialchars($config['email']) : 'No hay datos disponibles.'; ?></span>
+            <div class="contactoFooter" id="contacto">
+                <div class="mensajeContacto"></div>
+                <form action="paginas/contacto.php" method="POST" class="formContactoGrid">
+                    <h4>Contáctanos</h4>
+                    <div class="formRow">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="formRow">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="formRow">
+                        <label for="telefono">Teléfono</label>
+                        <input type="text" id="telefono" name="telefono" required>
+                    </div>
+                    <div class="formRow">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
             </div>
         </div>
-        <div class="logoFooterRedesContainer">
-            <div class="logoFooter">
-                <?php if ($config): ?>
-                    <img src="uploads/<?php echo htmlspecialchars($config['iconoBlanco']); ?>"
-                        alt="UTN Solutions Real Estate" height="80" id="logoFooter">
-                <?php endif; ?>
-            </div>
-            <div class="redesFooter">
-                <?php if ($config): ?>
-                    <a href="<?php echo htmlspecialchars($config['facebook']); ?>" target="_blank" id="facebookFooter"><img
-                            src="img/facebook.png" alt="Facebook" height="32"></a>
-                    <a href="<?php echo htmlspecialchars($config['youtube']); ?>" target="_blank" id="youtubeFooter"><img
-                            src="img/youtube.png" alt="YouTube" height="32"></a>
-                    <a href="<?php echo htmlspecialchars($config['instagram']); ?>" target="_blank"
-                        id="instagramFooter"><img src="img/instagram.png" alt="Instagram" height="32"></a>
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="contactoFooter" id="contacto">
-            <div class="mensajeContacto"></div>
-            <form action="paginas/contacto.php" method="POST">
-                <h4>Contáctanos</h4>
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="telefono" placeholder="Teléfono" required>
-                <textarea name="mensaje" placeholder="Mensaje" required></textarea>
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
-    </div>
-</footer>
+    </footer>
     <div class="copyFooter">
         Derechos Reservados 2025
     </div>

@@ -27,3 +27,22 @@
     cursor: pointer;
     color: #222;
 }
+.botonVerMas {
+    display: inline-block;
+    background: #fff;
+    color: #2193b0;
+    font-weight: 600;
+    padding: 8px 22px;
+    border: 2px solid var(--colorAzul, #18184d);
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 12px;
+    font-size: 1em;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(24,24,77,0.07);
+    transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.botonVerMas:hover {
+    background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%);
+}

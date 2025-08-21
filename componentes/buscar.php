@@ -41,7 +41,7 @@ if ($q !== '') {
                     <?php if ($resultados && $resultados->num_rows > 0): ?>
                         <?php while ($prop = $resultados->fetch_assoc()): ?>
                             <div class="tarjetaPropiedad">
-                                <img src="<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
+                                <img src="../uploads/<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
                                     alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
                                 <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
                                 <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
