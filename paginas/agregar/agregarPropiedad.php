@@ -11,15 +11,16 @@ while ($agente = $resAgentes->fetch_assoc()) {
     $agentes[] = $agente;
 }
 
+$errores = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titulo = $_POST['titulo'] ?? '';
-    $descripcionBreve = $_POST['descripcionBreve'] ?? '';
+    $titulo = trim($_POST['titulo'] ?? '');
+    $descripcionBreve = trim($_POST['descripcionBreve'] ?? '');
     $precio = $_POST['precio'] ?? '';
     $tipo = $_POST['tipo'] ?? '';
     $destacada = isset($_POST['destacada']) ? 1 : 0;
-    $ubicacion = $_POST['ubicacion'] ?? '';
-    $descripcion_larga = $_POST['descripcion_larga'] ?? '';
-    $mapa = $_POST['mapa'] ?? '';
+    $ubicacion = trim($_POST['ubicacion'] ?? '');
+    $descripcion_larga = trim($_POST['descripcion_larga'] ?? '');
+    $mapa = trim($_POST['mapa'] ?? '');
     $idAgente = null;
     if ($privilegio === 'agente') {
         $stmtAgente = $conexion->prepare("SELECT idUsuario FROM usuarios WHERE usuario = ? LIMIT 1");
@@ -34,9 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $idAgente = isset($_POST['idAgente']) && $_POST['idAgente'] !== '' ? (int)$_POST['idAgente'] : null;
     }
 
-    if (!$idAgente) {
-        $error = 'Debes seleccionar un agente de ventas.';
-    } else {
+    if (empty($titulo)) $errores[] = 'El título es obligatorio.';
+    if (empty($descripcionBreve)) $errores[] = 'La descripción breve es obligatoria.';
+    if ($precio === '' || !is_numeric($precio) || $precio < 0) $errores[] = 'El precio debe ser un número positivo.';
+    if (empty($tipo) || !in_array($tipo, ['alquiler', 'venta'])) $errores[] = 'El tipo es obligatorio.';
+    if ($privilegio !== 'agente' && !$idAgente) $errores[] = 'Debes seleccionar un agente de ventas.';
+
+
+    if (empty($errores)) {
         $imagen_destacada = null;
         if (isset($_FILES['imagen_destacada']) && $_FILES['imagen_destacada']['error'] == UPLOAD_ERR_OK) {
             $nombre_archivo = uniqid() . '_' . basename($_FILES['imagen_destacada']['name']);
@@ -55,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('Location: ../administrarPropiedades.php?msg=agregado');
             exit;
         } else {
-            $error = 'No se pudo agregar la propiedad.';
+            $errores[] = 'No se pudo agregar la propiedad.';
         }
     }
 }
@@ -74,6 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php require_once '../../componentes/botonRegresar.php'; mostrarBotonRegresar('../administrarPropiedades.php'); ?>
     <div class="contenedorLogin" style="max-width: 420px;">
         <h2>Agregar Propiedad</h2>
+        <?php if (!empty($errores)): ?>
+            <div style="background:#ffc107;color:#18184d;padding:10px;margin-bottom:15px;border-radius:8px;font-weight:bold;">
+                <?php foreach ($errores as $err): ?>
+                    <div><?php echo $err; ?></div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <form method="POST" enctype="multipart/form-data">
             <label for="titulo">Título:</label>
             <input type="text" id="titulo" name="titulo" maxlength="150" required>

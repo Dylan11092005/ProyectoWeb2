@@ -1,27 +1,36 @@
 <?php
 include '../conexion.php';
+$errores = [];
 $mensaje = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = $_POST['usuario'];
-    $contrasenaAnterior = $_POST['contrasenaAnterior'];
-    $nuevaContrasena = $_POST['nuevaContrasena'];
-    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?");
-    $stmt->bind_param("ss", $usuario, $contrasenaAnterior);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-    if ($resultado && $resultado->num_rows === 1) {
-        $stmtUpdate = $conexion->prepare("UPDATE usuarios SET contrasena = ?, nuevo = 0 WHERE usuario = ?");
-        $stmtUpdate->bind_param("ss", $nuevaContrasena, $usuario);
-        if ($stmtUpdate->execute()) {
-           header('Location: login.php');
+    $usuario = trim($_POST['usuario'] ?? '');
+    $contrasenaAnterior = $_POST['contrasenaAnterior'] ?? '';
+    $nuevaContrasena = $_POST['nuevaContrasena'] ?? '';
+
+    if (empty($usuario)) $errores[] = 'El usuario es obligatorio.';
+    if (empty($contrasenaAnterior)) $errores[] = 'La contraseña anterior es obligatoria.';
+    if (empty($nuevaContrasena)) $errores[] = 'La nueva contraseña es obligatoria.';
+    if (!empty($nuevaContrasena) && strlen($nuevaContrasena) < 6) $errores[] = 'La nueva contraseña debe tener al menos 6 caracteres.';
+
+    if (empty($errores)) {
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?");
+        $stmt->bind_param("ss", $usuario, $contrasenaAnterior);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
+        if ($resultado && $resultado->num_rows === 1) {
+            $stmtUpdate = $conexion->prepare("UPDATE usuarios SET contrasena = ?, nuevo = 0 WHERE usuario = ?");
+            $stmtUpdate->bind_param("ss", $nuevaContrasena, $usuario);
+            if ($stmtUpdate->execute()) {
+               header('Location: login.php');
+            } else {
+                $errores[] = 'Error al actualizar la contraseña.';
+            }
+            $stmtUpdate->close();
         } else {
-            $mensaje = 'Error al actualizar la contraseña.';
+            $errores[] = 'Usuario o contraseña anterior incorrectos.';
         }
-        $stmtUpdate->close();
-    } else {
-        $mensaje = 'Usuario o contraseña anterior incorrectos.';
+        $stmt->close();
     }
-    $stmt->close();
 }
 ?>
 <!DOCTYPE html>
@@ -38,7 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ?>
     <div class="contenedorLogin">
         <h2>Cambiar Contraseña</h2>
-        <?php if ($mensaje) { echo '<p class="mensajeError">'.$mensaje.'</p>'; } ?>
+        <?php if (!empty($errores)): ?>
+            <div style="background:#ffc107;color:#18184d;padding:10px;margin-bottom:15px;border-radius:8px;font-weight:bold;">
+                <?php foreach ($errores as $err): ?>
+                    <div><?php echo $err; ?></div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <form method="POST" action="">
             <label for="usuario">Usuario:</label>
             <input type="text" id="usuario" name="usuario" required>
