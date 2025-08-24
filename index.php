@@ -41,22 +41,19 @@ $stmtAlquiler->close();
     <style>
         :root {
             --colorAzul:
-                <?php echo isset($config['colorAzul']) ? $config['colorAzul'] : '#18184d'; ?>
-            ;
+                <?php echo isset($config['colorAzul']) ? $config['colorAzul'] : '#18184d'; ?>;
             --colorAmarillo:
-                <?php echo isset($config['colorAmarillo']) ? $config['colorAmarillo'] : '#ffc107'; ?>
-            ;
+                <?php echo isset($config['colorAmarillo']) ? $config['colorAmarillo'] : '#ffc107'; ?>;
             --colorGris:
-                <?php echo isset($config['colorGris']) ? $config['colorGris'] : '#f5f5f5'; ?>
-            ;
+                <?php echo isset($config['colorGris']) ? $config['colorGris'] : '#f5f5f5'; ?>;
             --colorBlacono:
-                <?php echo isset($config['colorBlanco']) ? $config['colorBlanco'] : '#ffffff'; ?>
-            ;
+                <?php echo isset($config['colorBlanco']) ? $config['colorBlanco'] : '#ffffff'; ?>;
             --color-header: #0a0a1a;
         }
     </style>
-    <link rel="stylesheet" href="estilos/estilos.css">
-    <link rel="stylesheet" href="./estilos/estiloBusqueda.css">
+
+    <link rel="stylesheet" href="estilos/estilos.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet"href="./estilos/estiloBusqueda.css?202405=<?php echo (rand()); ?>">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
 </head>

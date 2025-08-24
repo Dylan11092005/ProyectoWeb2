@@ -77,9 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Agregar Propiedad</title>
     <link rel="stylesheet" href="../../estilos/estiloLogin.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet" href="../../estilos/estiloAdministrar.css?202405=<?php echo (rand()); ?>">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
-    <link rel="stylesheet" href="../../estilos/estiloAdministrar.css">
 </head>
 
 <body>

@@ -39,13 +39,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Inicio de Sesión</title>
-    <link rel="stylesheet" href="../estilos/estiloLogin.css">
+    <link rel="stylesheet" href="../estilos/estiloLogin.css?202405=<?php echo (rand()); ?>">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
 </head>
+
 <body>
-    <?php 
+    <?php
     require_once '../componentes/botonRegresar.php';
     mostrarBotonRegresar('../index.php');
     ?>
@@ -65,10 +69,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" id="contrasena" name="contrasena" required>
             <button type="submit">Ingresar</button>
         </form>
-        <?php 
+        <?php
         require_once '../componentes/botonRegresar.php';
         mostrarBotonRegresar('../index.php');
         ?>
     </div>
 </body>
+
 </html>

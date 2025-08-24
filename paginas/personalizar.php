@@ -46,9 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir($carpeta_destino, 0777, true);
         }
 
-        foreach ([
-            'iconoPrincipal', 'iconoBlanco', 'bannerImagen', 'quienesSomosImagen'
-        ] as $imgField) {
+        foreach (
+            [
+                'iconoPrincipal',
+                'iconoBlanco',
+                'bannerImagen',
+                'quienesSomosImagen'
+            ] as $imgField
+        ) {
             if (isset($_FILES[$imgField]) && $_FILES[$imgField]['error'] == UPLOAD_ERR_OK) {
                 $nombre_archivo = uniqid() . '_' . basename($_FILES[$imgField]['name']);
                 $ruta_archivo = $carpeta_destino . $nombre_archivo;
@@ -91,9 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Personalizar Página</title>
-        <link rel="stylesheet" href="../estilos/estiloAdministrar.css">
-        <link rel="stylesheet" href="../estilos/estilosUsuarios.css">
-        <link rel="stylesheet" href="../estilos/estiloPersonalizar.css">
+    <link rel="stylesheet" href="../estilos/estiloAdministrar.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet" href="../estilos/estilosUsuarios.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet" href="../estilos/estiloPersonalizar.css?202405=<?php echo (rand()); ?>">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
 </head>
 
 <body>
@@ -109,45 +116,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
         <form method="POST" enctype="multipart/form-data" class="personalizar-form">
-        <label>Color Azul:</label>
-        <input type="color" name="colorAzul" value="<?php echo $config['colorAzul']; ?>"><br>
-        <label>Color Amarillo:</label>
-        <input type="color" name="colorAmarillo" value="<?php echo $config['colorAmarillo']; ?>"><br>
-        <label>Color Gris:</label>
-        <input type="color" name="colorGris" value="<?php echo $config['colorGris']; ?>"><br>
-        <label>Color Blanco:</label>
-        <input type="color" name="colorBlanco" value="<?php echo $config['colorBlanco']; ?>"><br>
-        <label>Icono Principal:</label>
-        <input type="file" name="iconoPrincipal" accept="image/*">
-    <?php if ($config['iconoPrincipal']) echo '<img src="../uploads/' . $config['iconoPrincipal'] . '" height="40">'; ?><br>
-        <label>Icono Blanco:</label>
-        <input type="file" name="iconoBlanco" accept="image/*">
-    <?php if ($config['iconoBlanco']) echo '<img src="../uploads/' . $config['iconoBlanco'] . '" height="40">'; ?><br>
-        <label>Banner Imagen:</label>
-        <input type="file" name="bannerImagen" accept="image/*">
-    <?php if ($config['bannerImagen']) echo '<img src="../uploads/' . $config['bannerImagen'] . '" height="40">'; ?><br>
-        <label>Banner Mensaje:</label>
-        <input type="text" name="bannerMensaje" value="<?php echo htmlspecialchars($config['bannerMensaje']); ?>"><br>
-        <label>Quienes Somos:</label>
-        <textarea name="quienesSomos"><?php echo htmlspecialchars($config['quienesSomos']); ?></textarea><br>
-        <label>Quienes Somos Imagen:</label>
-        <input type="file" name="quienesSomosImagen" accept="image/*">
-        <?php if ($config['quienesSomosImagen']) echo '<img src="../uploads/' . $config['quienesSomosImagen'] . '" height="40">'; ?><br>
-        <label>Facebook:</label>
-        <input type="text" name="facebook" value="<?php echo htmlspecialchars($config['facebook']); ?>"><br>
-        <label>Instagram:</label>
-        <input type="text" name="instagram" value="<?php echo htmlspecialchars($config['instagram']); ?>"><br>
-        <label>YouTube:</label>
-        <input type="text" name="youtube" value="<?php echo htmlspecialchars($config['youtube']); ?>"><br>
-        <label>Dirección:</label>
-        <input type="text" name="direccion" value="<?php echo htmlspecialchars($config['direccion']); ?>"><br>
-        <label>Teléfono:</label>
-        <input type="text" name="telefono" value="<?php echo htmlspecialchars($config['telefono']); ?>"><br>
-        <label>Email:</label>
-        <input type="email" name="email" value="<?php echo htmlspecialchars($config['email']); ?>"><br>
-        <button type="submit">Guardar Cambios</button>
-            </form>
-        </div>
+            <label>Color Azul:</label>
+            <input type="color" name="colorAzul" value="<?php echo $config['colorAzul']; ?>"><br>
+            <label>Color Amarillo:</label>
+            <input type="color" name="colorAmarillo" value="<?php echo $config['colorAmarillo']; ?>"><br>
+            <label>Color Gris:</label>
+            <input type="color" name="colorGris" value="<?php echo $config['colorGris']; ?>"><br>
+            <label>Color Blanco:</label>
+            <input type="color" name="colorBlanco" value="<?php echo $config['colorBlanco']; ?>"><br>
+            <label>Icono Principal:</label>
+            <input type="file" name="iconoPrincipal" accept="image/*">
+            <?php if ($config['iconoPrincipal']) echo '<img src="../uploads/' . $config['iconoPrincipal'] . '" height="40">'; ?><br>
+            <label>Icono Blanco:</label>
+            <input type="file" name="iconoBlanco" accept="image/*">
+            <?php if ($config['iconoBlanco']) echo '<img src="../uploads/' . $config['iconoBlanco'] . '" height="40">'; ?><br>
+            <label>Banner Imagen:</label>
+            <input type="file" name="bannerImagen" accept="image/*">
+            <?php if ($config['bannerImagen']) echo '<img src="../uploads/' . $config['bannerImagen'] . '" height="40">'; ?><br>
+            <label>Banner Mensaje:</label>
+            <input type="text" name="bannerMensaje" value="<?php echo htmlspecialchars($config['bannerMensaje']); ?>"><br>
+            <label>Quienes Somos:</label>
+            <textarea name="quienesSomos"><?php echo htmlspecialchars($config['quienesSomos']); ?></textarea><br>
+            <label>Quienes Somos Imagen:</label>
+            <input type="file" name="quienesSomosImagen" accept="image/*">
+            <?php if ($config['quienesSomosImagen']) echo '<img src="../uploads/' . $config['quienesSomosImagen'] . '" height="40">'; ?><br>
+            <label>Facebook:</label>
+            <input type="text" name="facebook" value="<?php echo htmlspecialchars($config['facebook']); ?>"><br>
+            <label>Instagram:</label>
+            <input type="text" name="instagram" value="<?php echo htmlspecialchars($config['instagram']); ?>"><br>
+            <label>YouTube:</label>
+            <input type="text" name="youtube" value="<?php echo htmlspecialchars($config['youtube']); ?>"><br>
+            <label>Dirección:</label>
+            <input type="text" name="direccion" value="<?php echo htmlspecialchars($config['direccion']); ?>"><br>
+            <label>Teléfono:</label>
+            <input type="text" name="telefono" value="<?php echo htmlspecialchars($config['telefono']); ?>"><br>
+            <label>Email:</label>
+            <input type="email" name="email" value="<?php echo htmlspecialchars($config['email']); ?>"><br>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+    </div>
     </form>
 </body>
 

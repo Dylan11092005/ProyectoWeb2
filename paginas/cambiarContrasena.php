@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmtUpdate = $conexion->prepare("UPDATE usuarios SET contrasena = ?, nuevo = 0 WHERE usuario = ?");
             $stmtUpdate->bind_param("ss", $nuevaContrasena, $usuario);
             if ($stmtUpdate->execute()) {
-               header('Location: login.php');
+                header('Location: login.php');
             } else {
                 $errores[] = 'Error al actualizar la contraseña.';
             }
@@ -40,13 +40,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Cambiar Contraseña</title>
-    <link rel="stylesheet" href="../estilos/estiloLogin.css">
+
+    <link rel="stylesheet" href="../estilos/estiloLogin.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet" href="../estilos/estilosUsuarios.css?202405=<?php echo (rand()); ?>">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
 </head>
+
 <body>
-    <?php 
+    <?php
     require_once '../componentes/botonRegresar.php';
     mostrarBotonRegresar('login.php');
     ?>
@@ -70,4 +76,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </div>
 </body>
+
 </html>
