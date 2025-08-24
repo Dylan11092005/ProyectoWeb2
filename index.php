@@ -1,13 +1,13 @@
 <?php
 require_once 'conexion.php';
 
-// Configuración de la página (no hay entrada de usuario, pero se puede usar consulta preparada)
+
 $stmtConfig = $conexion->prepare("SELECT * FROM configuracion_pagina LIMIT 1");
 $stmtConfig->execute();
 $config = $stmtConfig->get_result()->fetch_assoc();
 $stmtConfig->close();
 
-// Propiedades destacadas (3 últimas)
+
 $stmtDestacadas = $conexion->prepare("SELECT * FROM propiedades WHERE destacada=? ORDER BY idPropiedad DESC LIMIT 3");
 $destacada = 1;
 $stmtDestacadas->bind_param("i", $destacada);
@@ -15,7 +15,7 @@ $stmtDestacadas->execute();
 $destacadas = $stmtDestacadas->get_result();
 $stmtDestacadas->close();
 
-// Propiedades en venta (3 últimas)
+
 $tipoVenta = 'venta';
 $stmtVenta = $conexion->prepare("SELECT * FROM propiedades WHERE tipo=? ORDER BY idPropiedad DESC LIMIT 3");
 $stmtVenta->bind_param("s", $tipoVenta);
@@ -23,7 +23,7 @@ $stmtVenta->execute();
 $venta = $stmtVenta->get_result();
 $stmtVenta->close();
 
-// Propiedades en alquiler (3 últimas)
+
 $tipoAlquiler = 'alquiler';
 $stmtAlquiler = $conexion->prepare("SELECT * FROM propiedades WHERE tipo=? ORDER BY idPropiedad DESC LIMIT 3");
 $stmtAlquiler->bind_param("s", $tipoAlquiler);
@@ -88,8 +88,8 @@ $stmtAlquiler->close();
         <nav class="navegacionPrincipal">
             <a href="index.php">Inicio</a> |
             <a href="#quienes">Quiénes Somos</a> |
-            <a href="#alquiler">Alquileres</a> |
-            <a href="#venta">Ventas</a> |
+            <a href="paginas/propiedadesAlquiler.php">Alquileres</a> |
+            <a href="paginas/propiedadesVenta.php">Ventas</a> |
             <a href="#contacto">Contáctenos</a>
         </nav>
     </header>
@@ -101,7 +101,7 @@ $stmtAlquiler->close();
         </form>
     </div>
 
-    <!-- Banner principal -->
+
     <section class="bannerPrincipal">
         <?php if ($config): ?>
             <img src="uploads/<?php echo htmlspecialchars($config['bannerImagen']); ?>" alt="Banner principal"
@@ -116,7 +116,7 @@ $stmtAlquiler->close();
         <?php endif; ?>
     </section>
 
-    <!-- Sección Quienes Somos -->
+
     <section class="quienesSomos" id="quienes">
         <div class="textoQuienes">
             <h2>Quiénes Somos</h2>
@@ -138,7 +138,7 @@ $stmtAlquiler->close();
     </section>
 
 
-    <!-- Propiedades Destacadas -->
+
     <section class="propiedadesDestacadas" id="destacadas">
         <h2>Propiedades Destacadas</h2>
         <div class="listaPropiedades">
@@ -161,7 +161,7 @@ $stmtAlquiler->close();
         </div>
     </section>
 
-    <!-- Propiedades en Venta -->
+
     <section class="propiedadesVenta" id="venta">
         <h2>Propiedades en Venta</h2>
         <div class="listaPropiedades">
@@ -184,7 +184,7 @@ $stmtAlquiler->close();
         </div>
     </section>
 
-    <!-- Propiedades en Alquiler -->
+
     <section class="propiedadesAlquiler" id="alquiler">
         <h2>Propiedades en Alquiler</h2>
         <div class="listaPropiedades">
@@ -207,7 +207,7 @@ $stmtAlquiler->close();
         </div>
     </section>
 
-    <!-- Footer con contacto -->
+
     <footer>
         <div class="infoFooter">
             <div class="datosFooter">

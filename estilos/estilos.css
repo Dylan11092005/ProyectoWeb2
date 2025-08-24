@@ -1,7 +1,10 @@
-/* Ejemplo de uso en el resto del CSS */
+
 body {
     background: var(--color-header);
     color: var(--colorAzul);
+}
+body.body-propiedades {
+    background: #6dd5ed;
 }
 
 .encabezadoPrincipal {
@@ -76,7 +79,7 @@ footer {
     box-shadow: 0 4px 16px rgba(0,0,0,0.18);
 }
 
-/* General */
+
 body {
     margin: 0;
     font-family: 'Montserrat', Arial, sans-serif;
@@ -92,7 +95,7 @@ html, body {
     overflow-x: hidden;
     box-sizing: border-box;
 }
-/* Barra login */
+
 .barraLogin {
     width: 100%;
     display: flex;
@@ -114,7 +117,7 @@ html, body {
     border: 2px solid #fff;
 }
 
-/* Header */
+
 .encabezadoPrincipal {
     background: var(--color-header);
     color: var(--colorBlacono);
@@ -154,7 +157,7 @@ html, body {
 }
 
 
-/* Banner */
+
 .bannerPrincipal {
     position: relative;
     width: 100%;
@@ -185,7 +188,7 @@ html, body {
     font-style: italic;
 }
 
-/* Quiénes Somos */
+
 .quienesSomos {
     background: var(--colorGris);
     display: flex;
@@ -219,7 +222,7 @@ html, body {
     object-fit: cover;
 }
 
-/* Secciones de propiedades */
+
 .propiedadesDestacadas,
 .propiedadesVenta,
 .propiedadesAlquiler {
@@ -325,7 +328,7 @@ html, body {
     border: 2px solid var(--colorAzul);
 }
 
-/* Footer */
+
 footer {
     background: var(--colorAmarillo);
     color: var(--colorAzul);
@@ -350,9 +353,9 @@ footer {
 .infoFooter > div:first-child {
     display: flex;
     flex-direction: column;
-    gap: 18px;              /* Más separación entre los datos */
-    font-size: 1.18em;      /* Texto más grande */
-    line-height: 1.7;       /* Más espacio vertical */
+    gap: 18px;              
+    font-size: 1.18em;      
+    line-height: 1.7;       
 }
 .infoFooter div {
     font-size: 1em;
@@ -444,7 +447,7 @@ footer {
     font-weight: bold;
     letter-spacing: 1px;
     margin: 0;
-    /* No usar position: fixed ni absolute para sticky footer */
+
 }
 
 .datosFooter {
@@ -479,7 +482,7 @@ footer {
     margin-right: 4px;
 }
 
-/* Formulario de contacto en footer alineado etiquetas y campos */
+
 .formContactoGrid {
     display: flex;
     flex-direction: column;

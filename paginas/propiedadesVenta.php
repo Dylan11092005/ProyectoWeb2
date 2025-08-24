@@ -1,7 +1,12 @@
 <?php
 require_once '../conexion.php';
 
-// Consulta segura para todas las propiedades en venta
+
+$stmtConfig = $conexion->prepare("SELECT * FROM configuracion_pagina LIMIT 1");
+$stmtConfig->execute();
+$config = $stmtConfig->get_result()->fetch_assoc();
+$stmtConfig->close();
+
 $tipoVenta = 'venta';
 $stmtVenta = $conexion->prepare("SELECT * FROM propiedades WHERE tipo=? ORDER BY idPropiedad DESC");
 $stmtVenta->bind_param("s", $tipoVenta);
@@ -11,23 +16,23 @@ $stmtVenta->close();
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Propiedades en Venta</title>
     <link rel="stylesheet" href="../estilos/estilos.css">
 </head>
-<body>
+
+<body class="body-propiedades">
     <header class="encabezadoPrincipal">
         <div class="logoEmpresa">
-            <img src="../assets/logo.png" alt="Logo" height="60">
-            <div class="textoLogo">
-                <span>UTN SOLUTIONS</span><br>
-                <span>REAL STATE</span>
-            </div>
+            
         </div>
         <nav class="navegacionPrincipal">
             <a href="../index.php">Inicio</a> |
-            <a href="#venta">Venta</a>
+            <a href="#venta">Venta</a> |
+            <a href="propiedadesAlquiler.php">Alquiler</a> |
+            <a href="propiedadesDestacadas.php">Destacadas</a>
         </nav>
     </header>
     <section class="propiedadesVenta">
@@ -35,17 +40,27 @@ $stmtVenta->close();
         <div class="listaPropiedades">
             <?php if ($venta && $venta->num_rows > 0): ?>
                 <?php while ($prop = $venta->fetch_assoc()): ?>
-                    <div class="tarjetaPropiedad">
-                        <img src="../uploads/<?php echo htmlspecialchars($prop['imagen_destacada']); ?>" alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
+                    <a href="propiedad.php?id=<?php echo $prop['idPropiedad']; ?>" class="tarjetaPropiedad">
+                        <img src="../uploads/<?php echo htmlspecialchars($prop['imagen_destacada']); ?>"
+                            alt="<?php echo htmlspecialchars($prop['titulo']); ?>">
                         <h3><?php echo htmlspecialchars($prop['titulo']); ?></h3>
                         <p><?php echo htmlspecialchars($prop['descripcionBreve']); ?></p>
                         <span class="precioPropiedad">Precio: $<?php echo number_format($prop['precio'], 2); ?></span>
-                    </div>
+                    </a>
                 <?php endwhile; ?>
+                <?php
+            require_once '../componentes/botonRegresar.php';
+            mostrarBotonRegresar('../index.php');
+            ?>
             <?php else: ?>
                 <p>No hay datos disponibles.</p>
+                <?php
+            require_once '../componentes/botonRegresar.php';
+            mostrarBotonRegresar('../index.php');
+            ?>
             <?php endif; ?>
         </div>
     </section>
 </body>
+
 </html>
