@@ -116,13 +116,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endif; ?>
         <form method="POST" enctype="multipart/form-data" class="personalizar-form">
-            <label>Color Azul:</label>
+            <label>Color(Inicialmente azul):</label>
             <input type="color" name="colorAzul" value="<?php echo $config['colorAzul']; ?>"><br>
-            <label>Color Amarillo:</label>
+            <label>Color(Inicialmente Amarillo):</label>
             <input type="color" name="colorAmarillo" value="<?php echo $config['colorAmarillo']; ?>"><br>
-            <label>Color Gris:</label>
+            <label>Color(Inicialmente Gris):</label>
             <input type="color" name="colorGris" value="<?php echo $config['colorGris']; ?>"><br>
-            <label>Color Blanco:</label>
+            <label>Color(Inicialmente Blanco):</label>
             <input type="color" name="colorBlanco" value="<?php echo $config['colorBlanco']; ?>"><br>
             <label>Icono Principal:</label>
             <input type="file" name="iconoPrincipal" accept="image/*">
