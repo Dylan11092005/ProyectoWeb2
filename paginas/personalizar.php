@@ -1,6 +1,10 @@
 <?php
 include '../conexion.php';
-
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit();
+}
 $sql = "SELECT * FROM configuracion_pagina LIMIT 1";
 $result = $conexion->query($sql);
 $config = $result->fetch_assoc();

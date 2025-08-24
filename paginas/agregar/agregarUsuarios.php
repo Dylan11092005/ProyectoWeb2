@@ -2,6 +2,11 @@
 include '../../conexion.php';
 require_once '../../componentes/botonRegresar.php';
 $mensaje = '';
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: index.php');
+    exit();
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'] ?? '';
     $telefono = $_POST['telefono'] ?? '';

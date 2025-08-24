@@ -1,6 +1,10 @@
 <?php
 session_start();
 include '../../conexion.php';
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit();
+}
 
 $privilegio = $_SESSION['privilegio'] ?? '';
 $usuarioSesion = $_SESSION['usuario'] ?? '';
@@ -68,6 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Agregar Propiedad</title>
@@ -76,8 +81,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta http-equiv="Pragma" content="no-cache">
     <link rel="stylesheet" href="../../estilos/estiloAdministrar.css">
 </head>
+
 <body>
-    <?php require_once '../../componentes/botonRegresar.php'; mostrarBotonRegresar('../administrarPropiedades.php'); ?>
+    <?php require_once '../../componentes/botonRegresar.php';
+    mostrarBotonRegresar('../administrarPropiedades.php'); ?>
     <div class="contenedorLogin" style="max-width: 420px;">
         <h2>Agregar Propiedad</h2>
         <?php if (!empty($errores)): ?>
@@ -113,16 +120,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="imagen_destacada">Imagen destacada:</label>
             <input type="file" id="imagen_destacada" name="imagen_destacada" accept="image/*">
             <?php if ($privilegio !== 'agente'): ?>
-            <label for="idAgente">Agente de ventas:</label>
-            <select id="idAgente" name="idAgente" required>
-                <option value="">Seleccione un agente</option>
-                <?php foreach ($agentes as $agente): ?>
-                    <option value="<?= $agente['idUsuario']; ?>"><?= htmlspecialchars($agente['nombre']); ?></option>
-                <?php endforeach; ?>
-            </select>
+                <label for="idAgente">Agente de ventas:</label>
+                <select id="idAgente" name="idAgente" required>
+                    <option value="">Seleccione un agente</option>
+                    <?php foreach ($agentes as $agente): ?>
+                        <option value="<?= $agente['idUsuario']; ?>"><?= htmlspecialchars($agente['nombre']); ?></option>
+                    <?php endforeach; ?>
+                </select>
             <?php endif; ?>
             <button type="submit">Agregar Propiedad</button>
         </form>
     </div>
 </body>
+
 </html>
