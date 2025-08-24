@@ -18,19 +18,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($nuevaContrasena) && strlen($nuevaContrasena) < 6) $errores[] = 'La nueva contraseña debe tener al menos 6 caracteres.';
 
     if (empty($errores)) {
-        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?");
-        $stmt->bind_param("ss", $usuario, $contrasenaAnterior);
+        $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE usuario = ? LIMIT 1");
+        $stmt->bind_param("s", $usuario);
         $stmt->execute();
         $resultado = $stmt->get_result();
         if ($resultado && $resultado->num_rows === 1) {
-            $stmtUpdate = $conexion->prepare("UPDATE usuarios SET contrasena = ?, nuevo = 0 WHERE usuario = ?");
-            $stmtUpdate->bind_param("ss", $nuevaContrasena, $usuario);
-            if ($stmtUpdate->execute()) {
-                header('Location: login.php');
+            $usuarioDatos = $resultado->fetch_assoc();
+            if (password_verify($contrasenaAnterior, $usuarioDatos['contrasena'])) {
+                $hashNueva = password_hash($nuevaContrasena, PASSWORD_DEFAULT);
+                $stmtUpdate = $conexion->prepare("UPDATE usuarios SET contrasena = ?, nuevo = 0 WHERE usuario = ?");
+                $stmtUpdate->bind_param("ss", $hashNueva, $usuario);
+                if ($stmtUpdate->execute()) {
+                   header('Location: login.php');
+                } else {
+                    $errores[] = 'Error al actualizar la contraseña.';
+                }
+                $stmtUpdate->close();
             } else {
-                $errores[] = 'Error al actualizar la contraseña.';
+                $errores[] = 'Usuario o contraseña anterior incorrectos.';
             }
-            $stmtUpdate->close();
         } else {
             $errores[] = 'Usuario o contraseña anterior incorrectos.';
         }
