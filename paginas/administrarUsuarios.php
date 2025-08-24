@@ -79,7 +79,7 @@ if ($privilegio === 'administrador' && isset($_GET['eliminar'])) {
                                     {label: 'Correo', name: 'correo', type: 'email', value: '<?= htmlspecialchars($row['correo'], ENT_QUOTES, 'UTF-8'); ?>', required: true, maxlength: 100},
                                     {label: 'Email alternativo', name: 'email', type: 'email', value: '<?= htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8'); ?>', required: true, maxlength: 100},
                                     {label: 'Usuario', name: 'usuario', type: 'text', value: '<?= htmlspecialchars($row['usuario'], ENT_QUOTES, 'UTF-8'); ?>', required: true, maxlength: 50},
-                                    {label: 'Contraseña (Dejar en blanco para no cambiar)', name: 'contrasena', type: 'password', value: '', required: false, maxlength: 255}
+                                    {label: 'Contraseña', name: 'contrasena', type: 'password', value: '', required: false, maxlength: 255}
                                     <?php if ($privilegio === 'administrador'): ?>
                                     ,{label: 'Privilegio', name: 'privilegio', type: 'select', value: '<?= htmlspecialchars($row['privilegio'], ENT_QUOTES, 'UTF-8'); ?>', required: true, options: [
                                         {value: 'agente', label: 'Agente de ventas'},
