@@ -3,7 +3,10 @@ session_start();
 include '../conexion.php';
 require_once '../componentes/botonRegresar.php';
 require_once '../componentes/eliminar.php';
-
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit();
+}
 $privilegio = $_SESSION['privilegio'] ?? '';
 $usuarioSesion = $_SESSION['usuario'] ?? '';
 

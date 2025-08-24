@@ -1,5 +1,10 @@
 <?php
 include '../conexion.php';
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: login.php');
+    exit();
+}
 $errores = [];
 $mensaje = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
