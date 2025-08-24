@@ -26,8 +26,10 @@ if ($privilegio === 'administrador' && isset($_GET['eliminar'])) {
 <head>
     <meta charset="UTF-8">
     <title>Administrar Usuarios</title>
-    <link rel="stylesheet" href="../estilos/estiloAdministrar.css">
-    <link rel="stylesheet" href="../estilos/estilosUsuarios.css">
+    <link rel="stylesheet" href="../estilos/estiloAdministrar.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet" href="../estilos/estilosUsuarios.css?202405=<?php echo (rand()); ?>">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
 </head>
 
 <body>

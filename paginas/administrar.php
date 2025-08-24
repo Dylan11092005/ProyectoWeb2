@@ -10,8 +10,10 @@ if (!isset($_SESSION['usuario'])) {
 <head>
     <meta charset="UTF-8">
     <title>Panel Principal</title>
-    <link rel="stylesheet" href="../estilos/estiloLogin.css">
-    <link rel="stylesheet" href="../estilos/estiloAdministrar.css">
+    <link rel="stylesheet" href="../estilos/estiloLogin.css?202405=<?php echo (rand()); ?>">
+    <link rel="stylesheet" href="../estilos/estiloAdministrar.css?202405=<?php echo (rand()); ?>">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
     <style>
     .grid.centered {
         justify-content: center;
